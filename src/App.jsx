@@ -1,6 +1,9 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useMemo, useCallback } from 'react'
 import { useEffect } from 'react';
 import './App.css';
+import Header from './compnents/Header';
+import ComponentOne from './compnents/ComponentOne';
+import ComponentTwo from './compnents/ComponentTwo';
 
 function App() {
   //useState
@@ -47,6 +50,22 @@ function btnClicked(){
   inputElem.current.style.backgroundColor="blue";
 }
 
+//useMemo
+const [number, setNumber]=useState(0);
+const [numCounter, setNumCounter]=useState(0);
+function cubeNum(num){
+  console.log("Calculation done");
+  return (Math.pow(num, 3))
+}
+const result = useMemo(()=>cubeNum(number), [number]);
+
+//useCallback
+const [i,setI]=useState(0);
+const newFunction = useCallback(()=>{},[])
+
+//useContext
+//See components
+
   return (
     <div className='grid-container'>
       <div className='grid-item'>
@@ -70,7 +89,24 @@ function btnClicked(){
     <input type='text' ref={inputElem}></input>
     <button onClick={btnClicked}>Click Here</button>
     </div>
-    <div className='grid-item'></div>
+    <div className='grid-item'>
+    <h3>useMemo</h3>
+    <input onChange={(e)=>setNumber(e.target.value)} type='number' value={number}/>
+    <p>Cube of the number: {result}</p>
+    <button onClick={()=>setNumCounter(numCounter+1)}>Counter++</button>
+    <p>Counter: {numCounter}</p>
+    </div>
+    <div className='grid-item'>
+    <h3>useCallback</h3>
+    <Header newFn={newFunction}/>
+    <p>{i}</p>
+    <button onClick={()=>setI(i+1)}>Click Here</button>
+    </div>
+    <div className='grid-item'>
+    <h3>useContext</h3>
+    <ComponentOne />
+    <ComponentTwo />
+    </div>
     </div>
   )
 }
