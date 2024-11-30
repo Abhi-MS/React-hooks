@@ -42,8 +42,8 @@
 }
 .grid-container{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 10px;
 }
 .grid-item {
@@ -55,4 +55,12 @@
 }
 .contextStyle{
   border: 2px solid #787676;
+}
+.custom-hook{
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  margin: 2rem;
+  border: 2px solid #333;
 }
